@@ -7,7 +7,7 @@ with open('../data/traits/neutral.txt') as f: neutral_traits = f.readlines()
 with open('../data/traits/negative.txt') as f: negative_traits = f.readlines()
 
 
-def __trait_retrieval(count_postive, count_neutral, count_negative):
+def __trait_retrieval(count_postive=0, count_neutral=0, count_negative=0):
     traits = []
     for x in range(0, count_postive):
         traits.append(positive_traits[random.randint(0, len(positive_traits) - 1)])
@@ -38,4 +38,15 @@ def get_traits(archtype):
         traits = __trait_retrieval(0, 5, 0)
     elif archtype == ALLNEGATIVE:
         traits = __trait_retrieval(0, 0, 5)
+    return traits
+
+
+def get_traits_by_count_and_archtype(count, archtype):
+    traits = []
+    if archtype == POSITIVE or archtype == ALLPOSITIVE:
+        traits = __trait_retrieval(count_postive=count)
+    elif archtype == NEUTRAL or archtype == ALLNEUTRAL:
+        traits = __trait_retrieval(count_neutral=count)
+    elif archtype == NEGATIVE or archtype == ALLNEGATIVE:
+        traits = __trait_retrieval(count_negative=count)
     return traits
