@@ -8,5 +8,6 @@ There are two primary interfaces:
  
 ## Acknowledgements
 Personality traits from MIT's Ideonomy site - http://ideonomy.mit.edu/essays/traits.html
+
 Racial First/Last names from Amon Kareth: Vault of Death - https://amon-kareth-vault-of-death.obsidianportal.com/wiki_pages/pregenerated-names
  
