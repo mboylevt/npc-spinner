@@ -10,11 +10,11 @@ with open('../data/traits/negative.txt') as f: negative_traits = f.readlines()
 def __trait_retrieval(count_postive=0, count_neutral=0, count_negative=0):
     traits = []
     for x in range(0, count_postive):
-        traits.append(positive_traits[random.randint(0, len(positive_traits) - 1)])
+        traits.append(positive_traits[random.randint(0, len(positive_traits) - 1)].rstrip())
     for x in range(0, count_neutral):
-        traits.append(neutral_traits[random.randint(0, len(neutral_traits) - 1)])
+        traits.append(neutral_traits[random.randint(0, len(neutral_traits) - 1)].rstrip())
     for x in range(0, count_negative):
-        traits.append(negative_traits[random.randint(0, len(negative_traits) - 1)])
+        traits.append(negative_traits[random.randint(0, len(negative_traits) - 1)].rstrip())
     return traits
 
 

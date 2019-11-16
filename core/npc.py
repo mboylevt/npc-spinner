@@ -22,13 +22,13 @@ class NPC():
         return header + '\n' + traits
 
 
-archtype = globals.POSITIVE
-race = globals.HUMAN
-sex = globals.MALE
-
-npcs = [NPC(archtype, sex, race, names.generate_name(race, sex), traits.get_traits_by_count_and_archtype(2, archtype)) for i in range(0,10)]
-for npc in npcs:
-    print(npc)
+# archtype = globals.POSITIVE
+# race = globals.HUMAN
+# sex = globals.MALE
+#
+# npcs = [NPC(archtype, sex, race, names.generate_name(race, sex), traits.get_traits_by_count_and_archtype(2, archtype)) for i in range(0,10)]
+# for npc in npcs:
+#     print(npc)
 # print("{archtype} {sex} {race}: {first} {last}".format(
 #     archtype=archtype,
 #     sex=sex,
