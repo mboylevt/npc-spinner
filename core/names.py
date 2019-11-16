@@ -1,4 +1,6 @@
+import os
 import random
+
 
 def generate_name(race, sex):
     """
@@ -10,9 +12,8 @@ def generate_name(race, sex):
     :return: First and Last name in list
     """
 
-    directory = "../data/races/{}/".format(race)
-    with open(directory + 'first_{}.txt'.format(sex)) as f: first_names = f.readlines()
-    with open(directory + 'last.txt'.format(sex)) as f: last_names = f.readlines()
+    with open(os.path.join('..', 'core', 'data', 'races', race, 'first_{}.txt'.format(sex))) as f: first_names = f.readlines()
+    with open(os.path.join('..', 'core', 'data', 'races', race, 'last.txt'.format(sex))) as f: last_names = f.readlines()
 
     return {
         'first': first_names[random.randint(0, len(first_names)-1)].rstrip(),
