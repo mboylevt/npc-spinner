@@ -2,7 +2,7 @@ import os
 import random
 
 from core.globals import POSITIVE, NEUTRAL, NEGATIVE, ALLPOSITIVE, ALLNEUTRAL, ALLNEGATIVE
-
+print(os.getcwd())
 with open(os.path.join('..', 'core', 'data', 'traits', 'positive.txt')) as f: positive_traits = f.readlines()
 with open(os.path.join('..', 'core', 'data', 'traits', 'neutral.txt')) as f: neutral_traits = f.readlines()
 with open(os.path.join('..', 'core', 'data', 'traits', 'negative.txt')) as f: negative_traits = f.readlines()
