@@ -29,7 +29,17 @@ def npc_gen_slack():
         name=names.generate_name(race, sex),
         traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
     )
-    return jsonify(npc.__dict__)
+    headline = "*{race} {sex}*\n{first} {last}\n".format(race=npc.race, sex=npc.sex, first=npc.name['first'], last=npc.name['last'])
+    trait_text = ""
+    for trait in npc.traits:
+        trait_text = trait_text + '\t' + trait + '\n'
+    resp = {
+        "response_type": "in_channel",
+        "text": headline + trait_text,
+        "username": "SpinNPC",
+        "mrkdwn": "true"
+    }
+    return jsonify(resp)
 
 
 @npc.route('/npc', methods=['GET', 'POST'])
