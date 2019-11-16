@@ -11,7 +11,28 @@ def status():
     return jsonify({'status': 'ok'})
 
 
-@npc.route('/npc', methods = ['GET', 'POST'])
+@npc.route('/npc_slack', methods=['GET', 'POST'])
+def npc_gen_slack():
+    data = request.form['text'].split(' ')
+    race = data[0]
+    sex = data[1]
+    archtype = data[2]
+    if len(data) > 3:
+        trait_count = int(data[3])
+    else:
+        trait_count = 5
+
+    npc = NPC(
+        archtype=archtype,
+        sex=sex,
+        race=race,
+        name=names.generate_name(race, sex),
+        traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
+    )
+    return jsonify(npc.__dict__)
+
+
+@npc.route('/npc', methods=['GET', 'POST'])
 def npc_gen():
     race = request.args.get('race')
     sex = request.args.get('sex')
