@@ -3,9 +3,14 @@ import random
 
 from core.globals import POSITIVE, NEUTRAL, NEGATIVE, ALLPOSITIVE, ALLNEUTRAL, ALLNEGATIVE
 
-with open(os.path.join('..', 'core', 'data', 'traits', 'positive.txt')) as f: positive_traits = f.readlines()
-with open(os.path.join('..', 'core', 'data', 'traits', 'neutral.txt')) as f: neutral_traits = f.readlines()
-with open(os.path.join('..', 'core', 'data', 'traits', 'negative.txt')) as f: negative_traits = f.readlines()
+if os.getcwd() == '/app':
+    base_path = '.'
+else:
+    base_path = '..'
+
+with open(os.path.join(base_path, 'core', 'data', 'traits', 'positive.txt')) as f: positive_traits = f.readlines()
+with open(os.path.join(base_path, 'core', 'data', 'traits', 'neutral.txt')) as f: neutral_traits = f.readlines()
+with open(os.path.join(base_path, 'core', 'data', 'traits', 'negative.txt')) as f: negative_traits = f.readlines()
 
 
 def __trait_retrieval(count_postive=0, count_neutral=0, count_negative=0):
