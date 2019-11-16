@@ -11,7 +11,7 @@ def status():
     return jsonify({'status': 'ok'})
 
 
-@npc.route('/npc')
+@npc.route('/npc', methods = ['GET', 'POST'])
 def npc_gen():
     race = request.args.get('race')
     sex = request.args.get('sex')
