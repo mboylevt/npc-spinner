@@ -13,6 +13,7 @@ def status():
 
 @npc.route('/npc_slack', methods=['GET', 'POST'])
 def npc_gen_slack():
+    return request.form
     data = request.form['text'].split(' ')
     race = data[0]
     sex = data[1]
