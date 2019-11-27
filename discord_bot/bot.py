@@ -3,6 +3,8 @@ import discord
 from core import traits, names
 from core.npc import NPC
 
+# Please add your bot client token here.  
+# The token is listed on your application's "Bots" page
 TOKEN = 'YOUR BOT TOKEN HERE'
 client = discord.Client()
 
