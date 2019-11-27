@@ -1,2 +1,3 @@
 flask
 gunicorn
+discord==0.16.12
