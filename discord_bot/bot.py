@@ -49,7 +49,7 @@ async def on_message(message):
                 spells=spells
             )
 
-            headline = "*{race} {gender}*\n{first} {last}\n".format(race=npc.race, gender=npc.gender, first=npc.name['first'],
+            headline = "{race} {gender}\n{first} {last}\n".format(race=npc.race, gender=npc.gender, first=npc.name['first'],
                                                                  last=npc.name['last'])
             trait_text = ""
             for trait in npc.traits:
