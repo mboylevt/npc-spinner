@@ -3,12 +3,13 @@ import random
 from core import traits, globals, names
 
 class NPC():
-    def __init__(self, archtype=None, gender=None, race=None, name=None, traits=None):
+    def __init__(self, archtype=None, gender=None, race=None, name=None, traits=None, spells=None):
         self.archtype = archtype
         self.gender = gender
         self.race = race
         self.name = name
         self.traits = traits
+        self.spells = spells
 
     def __repr__(self):
         header = "{archtype} {gender} {race}: {first} {last}".format(
@@ -19,7 +20,8 @@ class NPC():
             last=self.name['last']
         )
         traits = ''.join(self.traits)
-        return header + '\n' + traits
+        spells = ''.join(self.spells)
+        return header + '\n' + traits + '\n' + spells
 
 
 # archtype = globals.POSITIVE

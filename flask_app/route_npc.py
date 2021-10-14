@@ -2,9 +2,11 @@ from flask import Blueprint, jsonify, request
 
 from core import names, traits
 from core.npc import NPC
+from core.spell import parse_spells, get_spells_by_level
+import json
 
 npc = Blueprint('npc', __name__)
-
+spells = None
 
 @npc.route('/status')
 def status():
@@ -44,16 +46,24 @@ def npc_gen_slack():
 
 @npc.route('/npc', methods=['GET', 'POST'])
 def npc_gen():
+
+    full_spell_list = parse_spells()
+    spells = None
+
     race = request.args.get('race')
     gender = request.args.get('gender')
     archtype = request.args.get('archtype')
     trait_count = int(request.args.get('traitCount')) if request.args.get('traitCount') else 5
+    caster_level = int(request.args.get('caster')) if request.args.get('caster') else None
+    if caster_level:
+        spells = get_spells_by_level(caster_level, full_spell_list)
 
     npc = NPC(
         archtype=archtype,
         gender=gender,
         race=race,
         name=names.generate_name(race, gender),
-        traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
+        traits=traits.get_traits_by_count_and_archtype(trait_count, archtype),
+        spells=spells
     )
     return jsonify(npc.__dict__)
