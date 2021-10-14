@@ -44,14 +44,19 @@ def npc_gen_slack():
     trait_text = "Traits:\n"
     for trait in npc.traits:
         trait_text = trait_text + '\t' + trait + '\n'
-    spell_text = "Spells:\n"
-    for spell_level in spells.keys():
-        spell_text = spell_text + '\tLevel ' + str(spell_level) + ':\n'
-        for spell in spells[spell_level].keys():
-            spell_text = spell_text + '\t\t' + spell + ':\n'
+    resp_text = headline + trait_text
+
+    if spells:
+        spell_text = "Spells:\n"
+        for spell_level in spells.keys():
+            spell_text = spell_text + '\tLevel ' + str(spell_level) + ':\n'
+            for spell in spells[spell_level].keys():
+                spell_text = spell_text + '\t\t' + spell + ':\n'
+        resp_text += spell_text
+
     resp = {
         "response_type": "in_channel",
-        "text": headline + trait_text + spell_text,
+        "text": resp_text,
         "username": "SpinNPC",
         "mrkdwn": "true"
     }
