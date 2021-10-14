@@ -16,6 +16,7 @@ def status():
 @npc.route('/npc_slack', methods=['GET', 'POST'])
 def npc_gen_slack():
     data = request.form['text'].split(' ')
+    caster_level = None
     race = data[0]
     gender = data[1]
     archtype = data[2]
@@ -23,21 +24,34 @@ def npc_gen_slack():
         trait_count = int(data[3])
     else:
         trait_count = 5
+    if len(data) > 4:
+        caster_level = int(data[4])
+
+    spells = None
+    if caster_level:
+        full_spell_list = parse_spells()
+        spells = get_spells_by_level(caster_level, full_spell_list)
 
     npc = NPC(
         archtype=archtype,
         gender=gender,
         race=race,
         name=names.generate_name(race, gender),
-        traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
+        traits=traits.get_traits_by_count_and_archtype(trait_count, archtype),
+        spells=spells
     )
-    headline = "*{race} {gender}*\n{first} {last}\n".format(race=npc.race, gender=npc.gender, first=npc.name['first'], last=npc.name['last'])
-    trait_text = ""
+    headline = "*{race} {gender}*\nName: {first} {last}\n".format(race=npc.race, gender=npc.gender, first=npc.name['first'], last=npc.name['last'])
+    trait_text = "Traits:\n"
     for trait in npc.traits:
         trait_text = trait_text + '\t' + trait + '\n'
+    spell_text = "Spells:\n"
+    for spell_level in spells.keys():
+        spell_text = spell_text + '\tLevel ' + str(spell_level) + ':\n'
+        for spell in spells[spell_level].keys():
+            spell_text = spell_text + '\t\t' + spell + ':\n'
     resp = {
         "response_type": "in_channel",
-        "text": headline + trait_text,
+        "text": headline + trait_text + spell_text,
         "username": "SpinNPC",
         "mrkdwn": "true"
     }
