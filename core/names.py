@@ -1,14 +1,15 @@
 import os
 import random
 
+from core import globals
 
-def generate_name(race, sex):
+def generate_name(race, gender):
     """
     Generate a name based on a race and sex
     :param race: race to generate.  Enumerated in globals
-    :param sex: sex to generate.  Male or Female (sorry :( )
+    :param gender: sex to generate.  Male or Female (sorry :( )
     :type race: str
-    :type sex: str
+    :type gender: str
     :return: First and Last name in list
     """
 
@@ -17,8 +18,17 @@ def generate_name(race, sex):
         base_path = '.'
     else:
         base_path = '..'
-    with open(os.path.join(base_path, 'core', 'data', 'races', race, 'first_{}.txt'.format(sex))) as f: first_names = f.readlines()
-    with open(os.path.join(base_path    , 'core', 'data', 'races', race, 'last.txt'.format(sex))) as f: last_names = f.readlines()
+
+    if gender == globals.NONBINARY:
+        with open(os.path.join(base_path, 'core', 'data', 'races', race,
+                               'first_male.txt')) as f: first_names = f.readlines()
+        with open(os.path.join(base_path, 'core', 'data', 'races', race,
+                               'first_female.txt')) as f: first_names.extend(f.readlines())
+
+    else:
+        with open(os.path.join(base_path, 'core', 'data', 'races', race, 'first_{}.txt'.format(gender))) as f: first_names = f.readlines()
+
+    with open(os.path.join(base_path, 'core', 'data', 'races', race, 'last.txt')) as f: last_names = f.readlines()
 
     return {
         'first': first_names[random.randint(0, len(first_names)-1)].rstrip(),

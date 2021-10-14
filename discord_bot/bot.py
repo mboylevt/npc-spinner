@@ -18,10 +18,10 @@ async def on_message(message):
     if message.content.startswith('!spin'):
         data = message.content.split(' ')
         if len(data) < 4:
-            await client.send_message(message.channel, "Spin like this: !spin <race> <sex> <archtype> [traitcount]")
+            await client.send_message(message.channel, "Spin like this: !spin <race> <gender> <archtype> [traitcount]")
         else:
             race = data[1]
-            sex = data[2]
+            gender = data[2]
             archtype = data[3]
             if len(data) > 4:
                 trait_count = int(data[4])
@@ -30,13 +30,13 @@ async def on_message(message):
 
             npc = NPC(
                 archtype=archtype,
-                sex=sex,
+                gender=gender,
                 race=race,
-                name=names.generate_name(race, sex),
+                name=names.generate_name(race, gender),
                 traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
             )
 
-            headline = "*{race} {sex}*\n{first} {last}\n".format(race=npc.race, sex=npc.sex, first=npc.name['first'],
+            headline = "*{race} {gender}*\n{first} {last}\n".format(race=npc.race, gender=npc.gender, first=npc.name['first'],
                                                                  last=npc.name['last'])
             trait_text = ""
             for trait in npc.traits:

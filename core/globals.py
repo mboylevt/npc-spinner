@@ -6,9 +6,10 @@ HALFLING = "halfling"
 ORC = "orc"
 GNOME = "gnome"
 
-# GENDERS (Binary for now)
+# GENDERS (to be expanded)
 MALE = "male"
 FEMALE = "female"
+NONBINARY = "nonbinary"
 
 # TRAITS
 POSITIVE = 'positive' # 3 positive, 1 neutral, 1 negative

@@ -15,7 +15,7 @@ def status():
 def npc_gen_slack():
     data = request.form['text'].split(' ')
     race = data[0]
-    sex = data[1]
+    gender = data[1]
     archtype = data[2]
     if len(data) > 3:
         trait_count = int(data[3])
@@ -24,12 +24,12 @@ def npc_gen_slack():
 
     npc = NPC(
         archtype=archtype,
-        sex=sex,
+        gender=gender,
         race=race,
-        name=names.generate_name(race, sex),
+        name=names.generate_name(race, gender),
         traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
     )
-    headline = "*{race} {sex}*\n{first} {last}\n".format(race=npc.race, sex=npc.sex, first=npc.name['first'], last=npc.name['last'])
+    headline = "*{race} {gender}*\n{first} {last}\n".format(race=npc.race, gender=npc.gender, first=npc.name['first'], last=npc.name['last'])
     trait_text = ""
     for trait in npc.traits:
         trait_text = trait_text + '\t' + trait + '\n'
@@ -45,15 +45,15 @@ def npc_gen_slack():
 @npc.route('/npc', methods=['GET', 'POST'])
 def npc_gen():
     race = request.args.get('race')
-    sex = request.args.get('sex')
+    gender = request.args.get('gender')
     archtype = request.args.get('archtype')
     trait_count = int(request.args.get('traitCount')) if request.args.get('traitCount') else 5
 
     npc = NPC(
         archtype=archtype,
-        sex=sex,
+        gender=gender,
         race=race,
-        name=names.generate_name(race, sex),
+        name=names.generate_name(race, gender),
         traits=traits.get_traits_by_count_and_archtype(trait_count, archtype)
     )
     return jsonify(npc.__dict__)

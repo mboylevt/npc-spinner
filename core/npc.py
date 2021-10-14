@@ -3,18 +3,18 @@ import random
 from core import traits, globals, names
 
 class NPC():
-    def __init__(self, archtype=None, sex=None, race=None, name=None, traits=None):
+    def __init__(self, archtype=None, gender=None, race=None, name=None, traits=None):
         self.archtype = archtype
-        self.sex = sex
+        self.gender = gender
         self.race = race
         self.name = name
         self.traits = traits
 
     def __repr__(self):
-        header = "{archtype} {sex} {race}: {first} {last}".format(
+        header = "{archtype} {gender} {race}: {first} {last}".format(
             archtype=self.archtype,
-            sex=sex,
-            race=race,
+            gender=self.gender,
+            race=self.race,
             first=self.name['first'],
             last=self.name['last']
         )
@@ -24,14 +24,14 @@ class NPC():
 
 # archtype = globals.POSITIVE
 # race = globals.HUMAN
-# sex = globals.MALE
+# gender = globals.MALE
 #
-# npcs = [NPC(archtype, sex, race, names.generate_name(race, sex), traits.get_traits_by_count_and_archtype(2, archtype)) for i in range(0,10)]
+# npcs = [NPC(archtype, gender, race, names.generate_name(race, gender), traits.get_traits_by_count_and_archtype(2, archtype)) for i in range(0,10)]
 # for npc in npcs:
 #     print(npc)
-# print("{archtype} {sex} {race}: {first} {last}".format(
+# print("{archtype} {gender} {race}: {first} {last}".format(
 #     archtype=archtype,
-#     sex=sex,
+#     gender=gender,
 #     race=race,
 #     first=name['first'],
 #     last=name['last']
