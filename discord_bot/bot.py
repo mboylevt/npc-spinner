@@ -7,7 +7,7 @@ from core.npc import NPC
 # The token is listed on your application's "Bots" page
 from core.spell import parse_spells, get_spells_by_level
 
-TOKEN = 'NjQ1NDQ0MjU2NTAwMTU0NDAw.XdCqzg.mwWFpjWsrlct8Prpt95ElLlTlSg'
+TOKEN = 'YERTOKENHERE'
 client = discord.Client()
 
 
