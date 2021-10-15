@@ -15,6 +15,8 @@ In /discord_bot, you'll find a file `bot.py` which contains a very simple discor
 
 https://www.devdungeon.com/content/make-discord-bot-python
 
+This discord bot listens for commands in the format of `!spin <race> <gender> <personality archtype> [number of traits, default 5] [caster level, default 0]`
+
  
 ## Acknowledgements
 Personality traits from MIT's Ideonomy site - http://ideonomy.mit.edu/essays/traits.html
